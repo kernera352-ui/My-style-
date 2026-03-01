@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест стиля | Минимализм</title>
+    <!-- Font Awesome 6 (бесплатные иконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* === СТИЛИ === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f9f9fb;
+            color: #1e1e2f;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+            padding: 2.5rem 2rem;
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            color: #111827;
+        }
+        .subhead {
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 2.5rem;
+            border-left: 4px solid #a78bfa;
+            padding-left: 1.2rem;
+        }
+        .question-block {
+            margin-bottom: 2.8rem;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 2rem;
+        }
+        .question-block:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .question-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #1f2937;
+        }
+        .question-title i {
+            color: #8b5cf6;
+            font-size: 1.4rem;
+            width: 32px;
+        }
+        .options-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .option-card {
+            flex: 1 1 calc(33.333% - 15px);
+            min-width: 200px;
+            background: #fafafa;
+            border: 1px solid #eaeaea;
+            border-radius: 20px;
+            padding: 1rem 1.2rem;
+            transition: all 0.15s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .option-card:hover {
+            background: #f3f0ff;
+            border-color: #c4b5fd;
+        }
+        .option-card input[type="radio"],
+        .option-card input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #8b5cf6;
+            flex-shrink: 0;
+        }
+        .option-card label {
+            font-size: 1rem;
+            cursor: pointer;
+            flex-grow: 1;
+            color: #374151;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        /* Специальный стиль для карточек с фото (будут занимать всю ширину) */
+        .option-card.photo-card {
+            flex: 1 1 100%;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 1.5rem;
+        }
+        .photo-row {
+            display: flex;
+            gap: 15px;
+            margin: 12px 0 8px;
+            flex-wrap: wrap;
+        }
+        .photo-row img {
+            width: calc(50% - 8px);
+            border-radius: 16px;
+            object-fit: cover;
+            height: 200px;
+            background: #eee; /* фон пока нет фото */
+        }
+        .photo-description {
+            font-size: 0.9rem;
+            color: #6b7280;
+}
+        .text-input, select, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            font-size: 1rem;
+            background: white;
+            transition: border 0.15s;
+            font-family: inherit;
+        }
+        .text-input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #a78bfa;
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2);
+        }
+        .color-swatch {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            vertical-align: middle;
+            border: 1px solid #ddd;
+        }
+        .btn-submit {
+            background: #111827;
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 2rem;
+            width: 100%;
+            letter-spacing: 0.3px;
+        }
+        .btn-submit:hover {
+            background: #2d3a4f;
+        }
+        .helper-text {
+            font-size: 0.9rem;
+            color: #9ca3af;
+            margin-top: 0.8rem;
+            text-align: center;
+        }
+        hr {
+            border: none;
+            border-top: 2px dashed #f0f0f0;
+            margin: 2rem 0;
+        }
+        @media (max-width: 640px) {
+            .container { padding: 1.5rem; }
+            .option-card { flex: 1 1 100%; }
+            .photo-row img { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✨ твой стиль: инструкция по применению</h1>
+        <div class="subhead">Ответьте на 16 коротких вопросов — я узнаю ваши предпочтения и свяжусь с вами</div>
+
+        <!-- ФОРМА: замените action на ваш эндпоинт Formspree -->
+        <form action="https://formspree.io/f/YOUR_ENDPOINT_HERE" method="POST" id="styleForm">
+
+            <!-- ========== ВОПРОС 1 ========== -->
+            <div class="question-block">
+                <div class="question-title"><i class="fas fa-user"></i> 1. Как бы вы описали свой образ жизни?</div>
+                <div class="options-grid">
+                    <div class="option-card"><input type="radio" name="образ_жизни" value="офис" id="life1"><label for="life1">🏢 Много работаю в офисе</label></div>
+                    <div class="option-card"><input type="radio" name="образ_жизни" value="удаленка" id="life2"><label for="life2">💻 На удаленке / фриланс</label></div>
+                    <div class="option-card"><input type="radio" name="образ_жизни" value="активный" id="life3"><label for="life3">✈️ Активный, путешествия</label></div>
+                    <div class="option-card"><input type="radio" name="образ_жизни" value="смешанный" id="life4"><label for="life4">🔄 Смешанный ритм</label></div>
+                    <div class="option-card"><input type="radio" name="образ_жизни" value="другое" id="life5"><label for="life5">✏️ Другое</label></div>
+                </div>
+            </div>
+
+            <!-- ========== ВОПРОС 2 ========== -->
+            <div class="question-block">
+                <div class="question-title"><i class="fas fa-venus-mars"></i> 2. Ваш пол и возраст (необязательно)</div>
+                <select name="возраст" class="text-input">
+                    <option value="">-- выберите диапазон --</option>
+                    <option value="до 25">до 25</option>
+                    <option value="26-35">26-35</option>
+                    <option value="36-45">36-45</option>
+                    <option value="46+">46+</option>
+                </select>
+            </div>
+<!-- ========== ВОПРОС 3 (тип фигуры) ========== -->
+            <div class="question-block">
+                <div class="question-title"><i class="fas fa-figure"></i> 3. Как бы вы описали свою фигуру?</div>
+                <div class="options-grid">
+                    <!-- Песочные часы (SVG) -->
+                    <div class="option-card">
+                        <input type="radio" name="тип_фигуры" value="песочные часы" id="fig1">
+                        <label for="fig1">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 10 L28 10 L24 20 L16 20 L12 10 Z" stroke="#1e1e2f" stroke-width="2" fill="none"/>
+                                <path d="M12 30 L28 30 L24 20 L16 20 L12 30 Z" stroke="#1e1e2f" stroke-width="2" fill="none"/>
+                            </svg>
+                            Песочные часы
+                        </label>
+                    </div>
+                    <!-- Груша -->
+                    <div class="option-card">
+                        <input type="radio" name="тип_фигуры" value="груша" id="fig2">
+                        <label for="fig2">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="20" cy="15" r="7" stroke="#1e1e2f" stroke-width="2" fill="none"/>
+                                <ellipse cx="20" cy="28" rx="8" ry="10" stroke="#1e1e2f" stroke-width="2" fill="none"/>
+                            </svg>
+                            Груша
+                        </label>
+                    </div>
+                    <!-- Прямоугольник -->
+                    <div class="option-card">
+                        <input type="radio" name="тип_фигуры" value="прямоугольник" id="fig3">
+                        <label for="fig3">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="10" y="10" width="20" height="20" stroke="#1e1e2f" stroke-width="2" fill="none"/>
+                            </svg>
+                            Прямоугольник
+                        </label>
+                    </div>
+                    <!-- Яблоко (овал) -->
+                    <div class="option-card">
+                        <input type="radio" name="тип_фигуры" value="яблоко" id="fig4">
+                        <label for="fig4">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <ellipse cx="20" cy="20" rx="11" ry="13" stroke="#1e1e2f" stroke-width="2" fill="none"/>
+                            </svg>
+                            Яблоко (овал)
+                        </label>
+                    </div>
+                    <!-- Перевёрнутый треугольник -->
+                    <div class="option-card">
+                        <input type="radio" name="тип_фигуры" value="перевернутый треугольник" id="fig5">
+                        <label for="fig5">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <polygon points="20,10 30,30 10,30" stroke="#1e1e2f" stroke-width="2" fill="none"/>
+                            </svg>
+                            Перевёрнутый треугольник
+                        </label>
+                    </div>
+                    <!-- Затрудняюсь -->
+                    <div class="option-card">
+                        <input type="radio" name="тип_фигуры" value="затрудняюсь" id="fig6">
+                        <label for="fig6">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="20" cy="20" r="10" stroke="#1e1e2f" stroke-width="2" fill="none"/>
+                                <text x="16" y="26" font-family="sans-serif" font-size="16" fill="#1e1e2f">?</text>
+                            </svg>
+                            Затрудняюсь
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== ВОПРОС 4 ========== -->
+            <div class="question-block">
+                <div class="question-title"><i class="fas fa-eye"></i> 4. Что хотите подчеркнуть / скрыть?</div>
+                <textarea name="зоны_тела" rows="3" class="text-input" placeholder="Например: подчеркнуть талию, скрыть бёдра..."></textarea>
+            </div>
+
+            <!-- ========== ВОПРОС 5 ========== -->
+            <div class="question-block">
+                <div class="question-title"><i class="fas fa-tshirt"></i> 5. Какой размер одежды вы обычно носите?</div>
+                <div class="options-grid">
+                    <div class="option-card"><input type="radio" name="размер" value="40-42 XS/S" id="size1"><label for="size1">40–42 (XS/S)</label></div>
+                    <div class="option-card"><input type="radio" name="размер" value="44-46 M" id="size2"><label for="size2">44–46 (M)</label></div>
+                    <div class="option-card"><input type="radio" name="размер" value="48-50 L" id="size3"><label for="size3">48–50 (L)</label></div>
+                    <div class="option-card"><input type="radio" name="размер" value="52-54 XL" id="size4"><label for="size4">52–54 (XL)</label></div>
+                    <div class="option-card"><input type="radio" name="размер" value="56+ XXL+" id="size5"><label for="size5">56 и выше (XXL+)</label></div>
+                    <div class="option-card"><input type="radio" name="размер" value="зависит от бренда" id="size6"><label for="size6">🔄 Зависит от бренда</label></div>
+                </div>
+            </div>
+
+            <!-- ========== ВОПРОС 6 ========== -->
+            <div class="question-block">
+                <div class="question-title"><i class="fas fa-ruler"></i> 6. Ваш рост и предпочтения в длине?</div>
+                <select name="рост" class="text-input" style="margin-bottom: 15px;">
+                    <option value="">-- выберите рост --</option>
+                    <option value="ниже 160">ниже 160 см</option>
+                    <option value="160-170">160–170 см</option>
+                    <option value="170-180">170–180 см</option>
+                    <option value="выше 180">выше 180 см</option>
+                </select>
+                <div class="options-grid">
+                    <div class="option-card"><input type="radio" name="длина" value="мини" id="len1"><label for="len1">Мини (выше колена)</label></div>
+                    <div class="option-card"><input type="radio" name="длина" value="миди" id="len2"><label for="len2">Миди (до середины икры)</label></div>
+                    <div class="option-card"><input type="radio" name="длина" value="макси" id="len3"><label for="len3">Макси (в пол)</label></div>
+                    <div class="option-card"><input type="radio" name="длина" value="только брюки" id="len4"><label for="len4">Только брюки/джинсы</label></div>
+                    <div class="option-card"><input type="radio" name="длина" value="зависит" id="len5"><label for="len5">Зависит от случая</label></div>
+                </div>
+            </div>
+
+            <!-- ========== ВОПРОС 7 (цветовая гамма с примерами) ========== -->
+            <div class="question-block">
+                <div class="question-title"><i class="fas fa-palette"></i> 7. Какая цветовая гамма вам комфортнее? (можно выбрать несколько)</div>
+                <div class="options-grid">
+<div class="option-card"><input type="checkbox" name="цвет_комфорт[]" value="база" id="col1"><label for="col1"><span class="color-swatch" style="background:#2d2d2d;"></span> Спокойная база: чёрный, белый, серый</label></div>
+                    <div class="option-card"><input type="checkbox" name="цвет_комфорт[]" value="пастель" id="col2"><label for="col2"><span class="color-swatch" style="background:#f9d6c5;"></span> Пастель: нежно-розовый, мятный, лавандовый</label></div>
+                    <div class="option-card"><input type="checkbox" name="цвет_комфорт[]" value="землистая" id="col3"><label for="col3"><span class="color-swatch" style="background:#8b5a2b;"></span> Природная/землистая: хаки, терракотовый, горчичный</label></div>
+                    <div class="option-card"><input type="checkbox" name="цвет_комфорт[]" value="яркая" id="col4"><label for="col4"><span class="color-swatch" style="background:#e11d48;"></span> Яркая/насыщенная: красный, синий, изумрудный</label></div>
+                </div>
+            </div>
+
+            <!-- ========== ВОПРОС 8 ========== -->
+            <div class="question-block">
+                <div class="question-title"><i class="fas fa-sun"></i> 8. Какие цвета вам идут?</div>
+                <div class="options-grid">
+                    <div class="option-card"><input type="radio" name="идущие_цвета" value="холодные" id="suit1"><label for="suit1">❄️ Холодные</label></div>
+                    <div class="option-card"><input type="radio" name="идущие_цвета" value="теплые" id="suit2"><label for="suit2">☀️ Теплые</label></div>
+                    <div class="option-card"><input type="radio" name="идущие_цвета" value="затрудняюсь" id="suit3"><label for="suit3">🤷 Затрудняюсь</label></div>
+                    <div class="option-card"><input type="radio" name="идущие_цвета" value="знаю цветотип" id="suit4"><label for="suit4">Знаю цветотип (напишу ниже)</label></div>
+                </div>
+                <input type="text" name="цветотип_текст" class="text-input" placeholder="Если знаете, укажите здесь" style="margin-top: 10px;">
+            </div>
+
+            <!-- ========== ВОПРОС 9 (ткани) ========== -->
+            <div class="question-block">
+                <div class="question-title"><i class="fas fa-vest"></i> 9. Какие ткани любите носить? (можно несколько)</div>
+                <div class="options-grid">
+                    <div class="option-card"><input type="checkbox" name="ткани[]" value="невесомые" id="fab1"><label for="fab1"><i class="fas fa-feather"></i> Невесомые (шёлк, вискоза)</label></div>
+                    <div class="option-card"><input type="checkbox" name="ткани[]" value="плотные" id="fab2"><label for="fab2"><i class="fas fa-cube"></i> Плотные (костюмная, деним)</label></div>
+                    <div class="option-card"><input type="checkbox" name="ткани[]" value="мягкие" id="fab3"><label for="fab3"><i class="fas fa-cloud"></i> Мягкие (кашемир, вязка)</label></div>
+                    <div class="option-card"><input type="checkbox" name="ткани[]" value="натуральные" id="fab4"><label for="fab4"><i class="fas fa-leaf"></i> Натуральные (лён, хлопок)</label></div>
+                </div>
+            </div>
+
+            <!-- ========== ВОПРОС 10 (силуэты с ФОТО) ========== -->
+            <div class="question-block">
+                <div class="question-title"><i class="fas fa-vector-square"></i> 10. Какие силуэты вам ближе?</div>
+                
+                <!-- Приталенные силуэты -->
+                <div class="option-card photo-card">
+                    <div style="display: flex; align-items: center; width: 100%;">
+                        <input type="radio" name="силуэт" value="приталенные" id="sil1" style="margin-right: 15px;">
+                        <label for="sil1" style="font-weight: 600; font-size: 1.1rem;">👗 Приталенные / облегающие</label>
+</div>
+                    <div class="photo-row">
+                        <!-- ЗАМЕНИТЕ ПУТИ НА ВАШИ ФОТОГРАФИИ -->
+                        <img src="images/10/облег.jfif" alt="Пример приталенного силуэта 1" onerror="this.src='https://pin.it/o4B52kIJg'">
+                        <img src="images/10/fitted-2.jpg" alt="Пример приталенного силуэта 2" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+2'">
+                    </div>
+                    <div class="photo-description">Подчёркивают фигуру, облегают</div>
+                </div>
+                
+                <!-- Оверсайз -->
+<div class="option-card photo-card">
+                    <div style="display: flex; align-items: center; width: 100%;">
+                        <input type="radio" name="силуэт" value="оверсайз" id="sil2" style="margin-right: 15px;">
+                        <label for="sil2" style="font-weight: 600; font-size: 1.1rem;">👕 Свободные / оверсайз</label>
+                    </div>
+                    <div class="photo-row">
+                        <!-- ЗАМЕНИТЕ ПУТИ -->
+                        <img src="images/10/ове.jfif" alt="Пример оверсайз 1" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+1'">
+                        <img src="images/10/овер.jfif" alt="Пример оверсайз 2" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+2'">
+                    </div>
+                    <div class="photo-description">Свободные, скрывают объёмы</div>
+                </div>
+                
+                <!-- Прямые силуэты -->
+                <div class="option-card photo-card">
+                    <div style="display: flex; align-items: center; width: 100%;">
+                        <input type="radio" name="силуэт" value="прямые" id="sil3" style="margin-right: 15px;">
+                        <label for="sil3" style="font-weight: 600; font-size: 1.1rem;">📐 Прямые</label>
+                    </div>
+                    <div class="photo-row">
+                        <!-- ЗАМЕНИТЕ ПУТИ -->
+                        <img src="images/10/fitted-1.jpg" alt="Пример прямого силуэта 1" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+1'">
+                        <img src="images/10/пр1.jpg" alt="Пример прямого силуэта 2" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+2'">
+                    </div>
+                    <div class="photo-description">Классические, не облегают, не слишком свободные</div>
+                </div>
+                
+                <!-- Комбинированные -->
+                <div class="option-card photo-card">
+                    <div style="display: flex; align-items: center; width: 100%;">
+                        <input type="radio" name="силуэт" value="комбинирую" id="sil4" style="margin-right: 15px;">
+                        <label for="sil4" style="font-weight: 600; font-size: 1.1rem;">🔄 Комбинирую (объёмный верх + узкий низ)</label>
+                    </div>
+                    <div class="photo-row">
+                        <!-- ЗАМЕНИТЕ ПУТИ -->
+                        <img src="images/10/загруженное (1).jfif" alt="Пример комбинированного силуэта 1" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+1'">
+                        <img src="images/10/загруженное (3).jfif" alt="Пример комбинированного силуэта 2" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+2'">
+                    </div>
+                    <div class="photo-description">Например, широкий свитер + узкие джинсы</div>
+                </div>
+            </div>
+
+            <!-- ========== ВОПРОС 11 (любимая вещь) ========== -->
+            <div class="question-block">
+                <div class="question-title"><i class="fas fa-heart"></i> 11. Любимый предмет гардероба?</div>
+                <input type="text" name="любимая_вещь" class="text-input" placeholder="Например: идеальные чёрные джинсы">
+            </div>
+
+            <!-- ========== ВОПРОС 12 (стили с ФОТО) ========== -->
+            <div class="question-block">
+                <div class="question-title"><i class="fas fa-style"></i> 12. Какой стиль эмоционально ближе? (выберите один)</div>
+                
+                <!-- Кэжуал -->
+                <div class="option-card photo-card">
+                    <div style="display: flex; align-items: center; width: 100%;">
+                        <input type="radio" name="стиль" value="кэжуал" id="sty1" style="margin-right: 15px;">
+<label for="sty1" style="font-weight: 600; font-size: 1.1rem;">🧥 Кэжуал (повседневный)</label>
+                    </div>
+                    <div class="photo-row">
+                        <img src="images/12/6.jfif" alt="Кэжуал стиль 1" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+1'">
+                        <img src="images/12/Denim.jfif" alt="Кэжуал стиль 2" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+2'">
+                    </div>
+                    <div class="photo-description">Удобство и простота на каждый день</div>
+                </div>
+                
+                <!-- Классика -->
+                <div class="option-card photo-card">
+                    <div style="display: flex; align-items: center; width: 100%;">
+                        <input type="radio" name="стиль" value="классика" id="sty2" style="margin-right: 15px;">
+                        <label for="sty2" style="font-weight: 600; font-size: 1.1rem;">👔 Классика (элегантность)</label>
+                    </div>
+                    <div class="photo-row">
+                        <img src="images/12/Aesthetic.jfif" alt="Классика 1" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+1'">
+                        <img src="images/12/загруженное (3).jfif" alt="Классика 2" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+2'">
+                    </div>
+                    <div class="photo-description">Сдержанность, качество, элегантные силуэты</div>
+                </div>
+                
+                <!-- Романтика -->
+                <div class="option-card photo-card">
+                    <div style="display: flex; align-items: center; width: 100%;">
+                        <input type="radio" name="стиль" value="романтика" id="sty3" style="margin-right: 15px;">
+                        <label for="sty3" style="font-weight: 600; font-size: 1.1rem;">🌸 Романтика</label>
+                    </div>
+                    <div class="photo-row">
+                        <img src="images/12/Fairy Outfit.jfif" alt="Романтика 1" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+1'">
+                        <img src="images/12/загруженное (4).jfif" alt="Романтика 2" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+2'">
+                    </div>
+                    <div class="photo-description">Кружева, цветочные принты, женственность</div>
+                </div>
+                
+                <!-- Минимализм -->
+                <div class="option-card photo-card">
+                    <div style="display: flex; align-items: center; width: 100%;">
+                        <input type="radio" name="стиль" value="минимализм" id="sty4" style="margin-right: 15px;">
+                        <label for="sty4" style="font-weight: 600; font-size: 1.1rem;">◻️ Минимализм</label>
+                    </div>
+                    <div class="photo-row">
+                        <img src="images/12/загруженное (5).jfif" alt="Минимализм 1" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+1'">
+                        <img src="images/12/Inst_ daryagalan.jfif" alt="Минимализм 2" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+2'">
+                    </div>
+                    <div class="photo-description">Лаконичность, чистые линии, монохром</div>
+                </div>
+                
+                <!-- Спорт-шик -->
+                <div class="option-card photo-card">
+                    <div style="display: flex; align-items: center; width: 100%;">
+                        <input type="radio" name="стиль" value="спорт-шик" id="sty5" style="margin-right: 15px;">
+                        <label for="sty5" style="font-weight: 600; font-size: 1.1rem;">🏃 Спорт-шик</label>
+</div>
+                    <div class="photo-row">
+                        <img src="images/12/Виктория Соловьёва.jfif" alt="Спорт-шик 1" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+1'">
+                        <img src="images/12/загруженное (7).jfif" alt="Спорт-шик 2" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+2'">
+                    </div>
+                    <div class="photo-description">Сочетание спортивных и повседневных вещей</div>
+                </div>
+                
+                <!-- Бохо -->
+                <div class="option-card photo-card">
+                    <div style="display: flex; align-items: center; width: 100%;">
+                        <input type="radio" name="стиль" value="бохо" id="sty6" style="margin-right: 15px;">
+                        <label for="sty6" style="font-weight: 600; font-size: 1.1rem;">🌿 Бохо / этника</label>
+                    </div>
+                    <div class="photo-row">
+                        <img src="images/12/bag_.jfif" alt="Бохо 1" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+1'">
+                        <img src="images/12/загруженное (8).jfif" alt="Бохо 2" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+2'">
+                    </div>
+                    <div class="photo-description">Слои, фактуры, необычные сочетания</div>
+                </div>
+                
+                <!-- Гранж -->
+                <div class="option-card photo-card">
+                    <div style="display: flex; align-items: center; width: 100%;">
+                        <input type="radio" name="стиль" value="гранж" id="sty7" style="margin-right: 15px;">
+                        <label for="sty7" style="font-weight: 600; font-size: 1.1rem;">🤘 Гранж / альтернатива</label>
+                    </div>
+                    <div class="photo-row">
+                        <img src="images/12/загруженное (9).jfif" alt="Гранж 1" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+1'">
+                        <img src="images/12/grunge-2.jpg" alt="Гранж 2" onerror="this.src='https://via.placeholder.com/300x200?text=Фото+2'">
+                    </div>
+                    <div class="photo-description">Выделиться из толпы, небрежность, рок-эстетика</div>
+                </div>
+            </div>
+
+            <!-- ========== ВОПРОС 13 (тренды vs личный стиль) ========== -->
+            <div class="question-block">
+                <div class="question-title"><i class="fas fa-balance-scale"></i> 13. Что важнее: модные тенденции или личный стиль?</div>
+                <div class="options-grid">
+                    <div class="option-card"><input type="radio" name="тренды_vs_стиль" value="тренды" id="tv1"><label for="tv1">📈 Модные тенденции</label></div>
+                    <div class="option-card"><input type="radio" name="тренды_vs_стиль" value="личный стиль" id="tv2"><label for="tv2">💎 Личный стиль</label></div>
+                    <div class="option-card"><input type="radio" name="тренды_vs_стиль" value="баланс" id="tv3"><label for="tv3">⚖️ Баланс</label></div>
+                    <div class="option-card"><input type="radio" name="тренды_vs_стиль" value="все равно" id="tv4"><label for="tv4">😌 Всё равно</label></div>
+                </div>
+            </div>
+
+            <!-- ========== ВОПРОС 14 ========== -->
+            <div class="question-block">
+                <div class="question-title"><i class="fas fa-questions"></i> 14. Как обычно выбираете одежду?</div>
+                <div class="options-grid">
+                    <div class="option-card"><input type="radio" name="выбор" value="интуиция" id="ch1"><label for="ch1">🔮 Интуиция</label></div>
+                    <div class="option-card"><input type="radio" name="выбор" value="примерка" id="ch2"><label for="ch2">🤔 Долго меряю</label></div>
+<div class="option-card"><input type="radio" name="выбор" value="совет" id="ch3"><label for="ch3">👯 Совет друзей</label></div>
+                    <div class="option-card"><input type="radio" name="выбор" value="план" id="ch4"><label for="ch4">📅 Планирую заранее</label></div>
+                </div>
+            </div>
+
+            <!-- ========== ВОПРОС 15 (обувь) ========== -->
+            <div class="question-block">
+                <div class="question-title"><i class="fas fa-shoe-prints"></i> 15. Любимая обувь на каждый день?</div>
+                <div class="options-grid">
+                    <div class="option-card"><input type="radio" name="обувь" value="кроссовки" id="sh1"><label for="sh1">👟 Кроссовки/кеды</label></div>
+                    <div class="option-card"><input type="radio" name="обувь" value="каблук" id="sh2"><label for="sh2">👠 Туфли на каблуке</label></div>
+                    <div class="option-card"><input type="radio" name="обувь" value="лоферы" id="sh3"><label for="sh3">👞 Балетки/лоферы</label></div>
+                    <div class="option-card"><input type="radio" name="обувь" value="ботинки" id="sh4"><label for="sh4">🥾 Ботинки/челси</label></div>
+                    <div class="option-card"><input type="radio" name="обувь" value="угги" id="sh5"><label for="sh5">❄️ Угги/дутики</label></div>
+                </div>
+            </div>
+
+            <!-- ========== ВОПРОС 16 (контакты) ========== -->
+            <hr>
+            <div class="question-block">
+                <div class="question-title"><i class="fas fa-envelope"></i> 16. Ваши контакты</div>
+                <input type="text" name="имя" class="text-input" placeholder="Ваше имя" required style="margin-bottom: 15px;">
+                <input type="email" name="email" class="text-input" placeholder="Ваш email" required>
+            </div>
+
+            <!-- Скрытое поле от спама (для Formspree) -->
+            <input type="text" name="_gotcha" style="display:none">
+
+            <button type="submit" class="btn-submit">✉️ Отправить и получить результаты</button>
+            <div class="helper-text">Нажимая кнопку, вы соглашаетесь на обработку данных. Ответы придут на почту в течение пары минут.</div>
+        </form>
+    </div>
+
+    <!-- Скрипт для кликов по карточкам (чтобы можно было нажать на любую область) -->
+    <script>
+        document.querySelectorAll('.option-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Если клик был по самому input, ничего не делаем (чтобы избежать двойного срабатывания)
+                if (e.target.tagName === 'INPUT'  e.target.tagName === 'IMG') return;
+                const input = this.querySelector('input');
+                if (input && (input.type === 'radio' || input.type === 'checkbox')) {
+                    if (input.type === 'checkbox') {
+                        input.checked = !input.checked;
+                    } else {
+                        input.checked = true;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
